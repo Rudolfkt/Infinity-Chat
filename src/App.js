@@ -2,9 +2,10 @@ import react, {Component} from 'react';
 import {
   Route,
   BrowserRouter as Router,
-  Swith,
+  Switch,
   Redirect
 } from 'react-router-dom';
+import '/App.css';
 import Home from ' ./Pages/Home/Home';
 import Chat from ' ./Pages/Chat/Chat';
 import Profile from ' ./Pages/Profile/Profile';
@@ -43,11 +44,50 @@ class App extends Component{
         });
 
       }else{
-        this.setState
+        this.setState({
+          authenticated : true,
+          loading: false
+        });
       }
     })
   }
   render(){
-    return()
+    return this.state.loading === true ? (
+      <div className="spinner-boarder text-success" role= 'status'>
+        <span className="sr-only">Loading...</span>
+      </div>
+    ):(
+      <Router>
+        <ToastContainer
+        autoClose = {2000}
+        hideProgressBar = {true}
+        position = {toast.POSITION.BOTTOM_CENTER}
+        />
+        <switch>
+          <Route
+          exact
+          path ="/"
+          render = { props => <Home {...props}/> }/>
+
+          <Route
+          path = "/login"
+          render = {props => <Login showToast={this.showToast}{...props}/>}
+          />
+          <Route
+          path = "/Profile"
+          render = {props => <Profile showToast={this.showToast}{...props}/>}
+          />
+          <Route
+          path = "/Signup"
+          render = {props => <Signup showToast={this.showToast}{...props}/>}
+          />
+          <Route
+          path = "/Chat"
+          render = {props => <Chat showToast={this.showToast}{...props}/>}
+          />
+        </switch>
+      </Router>
+    )
   }
 }
+export default App
