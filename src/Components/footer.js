@@ -15,7 +15,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <div className="footer-box center">
+            <div className="footer 1-box is-center">
                 {this.renderCopyright()}
             </div>
         );
