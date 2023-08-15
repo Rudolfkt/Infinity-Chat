@@ -5,7 +5,7 @@ class Footer extends React.Component {
     renderCopyright = () => {
         return (
             <h2 variant="body2" color="textSecondary" align="center">
-                {'Copyright '}
+                {'Copyright @'}
                 {'Infinity Chat '}
                 {new Date().getFullYear()}
                 {'.'}
